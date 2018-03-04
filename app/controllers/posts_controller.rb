@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     # render plain: params
     @post = Post.new(post_params)
     @post.save
+    flash[:notice] = "Post dodany pomyślnie"
     redirect_to posts_path
   end
 
@@ -27,7 +28,7 @@ class PostsController < ApplicationController
   end
 
   private
-  
+
   def post_params
     params.require(:post).permit(:title, :author, :body, :published)
   end

@@ -12,6 +12,11 @@
 
     <div class="container">
       <div class="page-header">
+        <% if flash[:notice].present? %>
+          <div class="alert alert-success">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
         <h1>Demonstracja CRUD</h1>
       </div>
       <%= yield %>
