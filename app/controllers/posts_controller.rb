@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def new
     @post = Post.new
+    flash.now[:notice] = "Pamiętaj o ortografii!"
   end
 
   def create
