@@ -2,6 +2,7 @@
 
 <%= simple_format @post.body %>
 
-<p><cite><%= @post.author %></cite></p>
+<!-- <p><cite><%= @post.author %>, <%= format_date(@post.created_at) %></cite></p> -->
+<p><%= post_footer(@post) %></p>
 
 <p><%= link_to "Wróć do spisu", posts_path %></p>
