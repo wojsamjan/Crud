@@ -1,2 +1,7 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<h3><%= @post.title %></h3>
+
+<p><%= @post.body %></p>
+
+<p><cite><%= @post.author %></cite></p>
+
+<p><%= link_to "Wróć do spisu", posts_path %></p>
