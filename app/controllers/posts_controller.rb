@@ -39,6 +39,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    flash[:notice] = "Pomyślnie usunięto wpis."
+    redirect_to posts_path
   end
 
   private
