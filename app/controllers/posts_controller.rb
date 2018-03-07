@@ -9,14 +9,19 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.save
     session[:author] = @post.author
-    flash[:notice] = "Post dodany pomyślnie"
+    flash[:notice] = "Post dodany pomyślnie."
     redirect_to posts_path
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
+    @post = Post.find(params[:id])
+    @post.update_attributes(post_params)
+    flash[:notice] = "Post zaktualizowany pomyślnie."
+    redirect_to posts_path
   end
 
   def index
