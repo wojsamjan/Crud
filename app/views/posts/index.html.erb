@@ -8,6 +8,11 @@
   <%= link_to "Dodaj nowy wpis", new_post_path, class: "btn btn-success" %>
 </p>
 
+<ul class="nav nav-tabs">
+  <li <% if params[:action] == "index" %>class="active"<% end %>><%= link_to "Wszystkie", posts_path %></li>
+  <li <% if params[:action] == "published" %>class="active"<% end %>><%= link_to "Opublikowane", published_posts_path %></li>
+</ul>
+
 <table class="table table-striped">
   <thead>
     <tr>

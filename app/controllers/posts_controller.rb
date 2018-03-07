@@ -39,6 +39,11 @@ class PostsController < ApplicationController
     # render layout: false
   end
 
+  def published
+    @posts = Post.where(published: true)
+    render action: "index"
+  end
+
   def show
     @post = Post.find(params[:id])
   end
