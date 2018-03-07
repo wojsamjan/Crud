@@ -35,7 +35,7 @@
         <td>
           <%= link_to "Pokaż", post_path(post), class: "btn btn-default btn-xs" %>
           <%= link_to "Edytuj", edit_post_path(post), class: "btn btn-primary btn-xs" %>
-          <%= link_to "Usuń", post_path(post), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Czy na pewno chcesz usunąć?" } %>
+          <%= link_to "Usuń", confirm_destroy_post_path(post), class: "btn btn-danger btn-xs" %>
         </td>
       </tr>
     <% end %>
