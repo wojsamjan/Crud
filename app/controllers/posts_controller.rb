@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   # layout 'jumbotron'
   layout :layout_or_not
+  # before_action :find_post, only: [:show]
+  before_action :authenticate, only: [:destroy, :confirm_destroy]
 
   def new
     @post = Post.new(author: session[:author])
@@ -37,6 +39,13 @@ class PostsController < ApplicationController
     @posts = Post.all
     # render layout: 'jumbotron'
     # render layout: false
+    respond_to do |format|
+      format.html { }
+      # format.xml { render xml: @posts }
+      format.xml { }
+      # format.json { render json: @posts }
+      format.json { render json: @posts.map { |p| { id: p.id, title: p.title }}}
+    end
   end
 
   def published
@@ -45,6 +54,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+  end
+
+  def confirm_destroy
     @post = Post.find(params[:id])
   end
 
@@ -68,4 +81,15 @@ class PostsController < ApplicationController
       'jumbotron'
     end
   end
+
+  # def find_post
+  #   @post = Post.find(params[:id])
+  # end
+
+  def authenticate
+    authenticate_or_request_with_http_basic "Podaj hasło" do |name, password|
+      name == "username" && password == "secret"
+    end
+  end
+
 end
