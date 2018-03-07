@@ -1,5 +1,9 @@
 <h3>Lista wpisów</h3>
 
+<% content_for :jumbotron_content do %>
+  <p>Witaj w super CRUDzie!</p>
+<% end %>
+
 <p>
   <%= link_to "Dodaj nowy wpis", new_post_path, class: "btn btn-success" %>
 </p>

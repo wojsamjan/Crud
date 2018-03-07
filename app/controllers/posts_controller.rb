@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  # layout 'jumbotron'
+  layout :layout_or_not
+
   def new
     @post = Post.new(author: session[:author])
     flash.now[:notice] = "Pamiętaj o ortografii!"
@@ -32,6 +35,8 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    # render layout: 'jumbotron'
+    # render layout: false
   end
 
   def show
@@ -49,5 +54,13 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :author, :body, :published)
+  end
+
+  def layout_or_not
+    if params[:skip_layout] == "true"
+      false
+    else
+      'jumbotron'
+    end
   end
 end
