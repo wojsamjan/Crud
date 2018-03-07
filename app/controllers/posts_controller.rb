@@ -7,10 +7,13 @@ class PostsController < ApplicationController
   def create
     # render plain: params
     @post = Post.new(post_params)
-    @post.save
-    session[:author] = @post.author
-    flash[:notice] = "Post dodany pomyślnie."
-    redirect_to posts_path
+    if @post.save
+      session[:author] = @post.author
+      flash[:notice] = "Post dodany pomyślnie."
+      redirect_to posts_path
+    else
+      render action: 'new'
+    end
   end
 
   def edit
@@ -19,9 +22,12 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update_attributes(post_params)
-    flash[:notice] = "Post zaktualizowany pomyślnie."
-    redirect_to posts_path
+    if @post.update_attributes(post_params)
+      flash[:notice] = "Post zaktualizowany pomyślnie."
+      redirect_to posts_path
+    else
+      render action: 'edit'
+    end
   end
 
   def index
